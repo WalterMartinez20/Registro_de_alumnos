@@ -12,55 +12,31 @@
         <div class="row">
             <div class="col-12 col-md-6">
                 <div class="card text-bg-primary mb-3" style="max-width: 41rem;">
-                    <div class="card-header text-bg-success text-white fw-bolder">REGISTRO DE ALUMNOS</div>
+                    <div class="card-header text-bg-dark text-white fw-bolder">REGISTRO DE AUTORES</div>
                     <div class="card-body">
-                        <form id="frmAlumno" @submit.prevent="guardarAlumno" @reset.prevent="nuevoAlumno()">
+                        <form id="frmAutor" @submit.prevent="guardarAutor" @reset.prevent="nuevoAutor()">
                             <div class="row p-1">
                                 <div class="col-3 col-md-3 fw-bolder">Codigo:</div>
                                 <div class="col-9 col-md-2">
-                                    <input class="form-control" type="text" v-model="alumno.codigo" name="txtCodigoAlumno" id="txtCodigoAlumno">
+                                    <input class="form-control" type="text" v-model="autor.codigo" name="txtCodigoAutor" id="txtCodigoAutor">
                                 </div>
                             </div>
                             <div class="row p-1">
                                 <div class="col-3 col-md-3 fw-bolder">Nombre:</div>
                                 <div class="col-9 col-md-8">
-                                    <input class="form-control" type="text" v-model="alumno.nombre" name="txtNombreAlumno" id="txtNombreAlumno">
+                                    <input class="form-control" type="text" v-model="autor.nombre" name="txtNombreAutor" id="txtNombreAutor">
                                 </div>
                             </div>
                             <div class="row p-1">
-                                <div class="col-3 col-md-3 fw-bolder">Direccion:</div>
-                                <div class="col-9 col-md-8">
-                                    <input class="form-control" type="text" v-model="alumno.direccion" name="txtDireccionAlumno" id="txtDireccionAlumno">
-                                </div>
-                            </div>
-                            <div class="row p-1">
-                                <div class="col-3 col-md-3 fw-bolder">Municipio:</div>
-                                <div class="col-9 col-md-6">
-                                    <input class="form-control" type="text" v-model="alumno.municipio" name="txtMunicipioAlumno" id="txtMunicipioAlumno">
-                                </div>
-                            </div>
-                            <div class="row p-1">
-                                <div class="col-3 col-md-3 fw-bolder">Departamento:</div>
-                                <div class="col-9 col-md-4">
-                                    <input class="form-control" type="text" v-model="alumno.depa" name="txtDepartAlumno" id="txtDepartAlumno">
+                                <div class="col-3 col-md-3 fw-bolder">Pais:</div>
+                                <div class="col-9 col-md-5">
+                                    <input class="form-control" type="text" v-model="autor.pais" name="txtPaisAutor" id="txtPaisAutor">
                                 </div>
                             </div>
                             <div class="row p-1">
                                 <div class="col-3 col-md-3 fw-bolder">Telefono:</div>
                                 <div class="col-9 col-md-3">
-                                    <input class="form-control" type="tel" v-model="alumno.telefono" name="txtTelefonoAlumno" id="txtTelefonoAlumno">
-                                </div>
-                            </div>
-                            <div class="row p-1">
-                                <div class="col-3 col-md-3 fw-bolder">Nacimiento:</div>
-                                <div class="col-9 col-md-4">
-                                    <input class="form-control" type="date" v-model="alumno.nacimiento" name="txtNacimientoAlumno" id="txtNacimientoAlumno">
-                                </div>
-                            </div>
-                            <div class="row p-1">
-                                <div class="col-3 col-md-3 fw-bolder">Sexo:</div>
-                                <div class="col-9 col-md-3">
-                                    <input class="form-control" type="text" v-model="alumno.sexo" name="txtSexoAlumno" id="txtSexoAlumno">
+                                    <input class="form-control" type="text" v-model="autor.telefono" name="txtTelefonoAutor" id="txtTelefonoAutor">
                                 </div>
                             </div>
                             <div class="row p-1">
@@ -77,38 +53,30 @@
             </div>
             <div class="col-12 col-md-6">
                 <div class="card text-bg-info">
-                    <div class="card-header text-bg-primary text-white fw-bolder">CONSULTA DE ALUMNOS</div>
+                    <div class="card-header text-bg-danger text-white fw-bolder">CONSULTA DE AUTORES</div>
                     <div class="card-body">
                         <form>
                             <table class="table table-success table-striped table-hover">
                                 <thead>
                                     <tr>
                                         <th>BUSCAR:</th>
-                                        <th colspan="5"><input type="text" @keyup="listarAlumnos()" v-model="buscar" 
-                                            class="form-control" placeholder="Busar por codigo, nombre, departamento, etc."></th>
+                                        <th colspan="5"><input type="text" @keyup="listarAutors()" v-model="buscar" 
+                                            class="form-control" placeholder="Busar por codigo, nombre, etc."></th>
                                     </tr>
                                     <tr>
                                         <th>CODIGO</th>
                                         <th>NOMBRE</th>
-                                        <th>DIRECCION</th>
-                                        <th>MUNICIPIO</th>
-                                        <th>DEPARTAMENTO</th>
-                                        <th>TELEFONO</th>
-                                        <th>NACIMIENTO</th>
-                                        <th>SEXO</th>
+                                        <th>PAIS</th>
+                                        <th colspan="5">TELEFONO</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr v-for="alumno in alumnos" @click='modificarAlumno(alumno)' :key="alumno.idAlumno">
-                                        <td>{{alumno.codigo}}</td>
-                                        <td>{{alumno.nombre}}</td>
-                                        <td>{{alumno.direccion}}</td>
-                                        <td>{{alumno.municipio}}</td>
-                                        <td>{{alumno.depa}}</td>
-                                        <td>{{alumno.telefono}}</td>
-                                        <td>{{alumno.nacimiento}}</td>
-                                        <td>{{alumno.sexo}}</td>
-                                        <td><button @click.prevent="eliminarAlumno(alumno)" class="btn btn-danger">Eliminar</button></td>
+                                    <tr v-for="autor in autors" @click='modificarAutor(autor)' :key="autor.idAutor">
+                                        <td>{{autor.codigo}}</td>
+                                        <td>{{autor.nombre}}</td>
+                                        <td>{{autor.pais}}</td>
+                                        <td>{{autor.telefono}}</td>
+                                        <td><button @click.prevent="eliminarAutor(autor)" class="btn btn-danger">Eliminar</button></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -126,69 +94,60 @@
             data() {
                 return {
                     buscar: '',
-                    alumnos:[],
+                    autors:[],
                     accion: 'nuevo',
-                    alumno:{
-                        idAlumno:0,
+                    autor:{
+                        idAutor:0,
                         codigo:'',
                         nombre:'',
-                        direccion:'',
-                        municipio:'',
-                        depa:'',
-                        telefono:'',
-                        nacimiento:'',
-                        sexo:''
+                        pais:'',
+                        telefono:''
                     }
                 }
             },
             methods:{
-                nuevoAlumno(){
+                nuevoAutor(){
                     this.accion = 'nuevo';
-                    this.alumno.idAlumno = '';
-                    this.alumno.codigo = '';
-                    this.alumno.nombre = '';
-                    this.alumno.direccion = '';
-                    this.alumno.municipio = '';
-                    this.alumno.depa = '';
-                    this.alumno.telefono = '';
-                    this.alumno.nacimiento = '';
-                    this.alumno.sexo = '';
-
+                    this.autor.idAutor = '';
+                    this.autor.codigo = '';
+                    this.autor.nombre = '';
+                    this.autor.pais = '';
+                    this.autor.telefono = '';
                 },
-                modificarAlumno(alumno){
+                modificarAutor(autor){
                     this.accion = 'modificar';
-                    this.alumno = alumno;
+                    this.autor = autor;
                 },
-                guardarAlumno(){
-                    this.listarAlumnos();
+                guardarAutor(){
+                    this.listarAutors();
                     if(this.accion==='nuevo'){
-                        this.alumno.idAlumno = new Date().getTime().toString(16);//las cantidad milisegundos y lo convierte en hexadecimal
-                        this.alumnos.push(JSON.parse(JSON.stringify(this.alumno)));
+                        this.autor.idAutor = new Date().getTime().toString(16);//las cantidad milisegundos y lo convierte en hexadecimal
+                        this.autors.push(JSON.parse(JSON.stringify(this.autor)));
                     }else if(this.accion==='modificar'){
                         //hacer la busqueda y modificar el registro
-                        let index = this.alumnos.findIndex(alumno=>alumno.idAlumno==this.alumno.idAlumno);
-                        this.alumnos[index] = JSON.parse(JSON.stringify(this.alumno));
+                        let index = this.autors.findIndex(autor=>autor.idAutor==this.autor.idAutor);
+                        this.autors[index] = JSON.parse(JSON.stringify(this.autor));
                     }else if(this.accion==='eliminar'){
-                        let index = this.alumnos.findIndex(alumno=>alumno.idAlumno==this.alumno.idAlumno);
-                        this.alumnos.splice(index, 1);
+                        let index = this.autors.findIndex(autor=>autor.idAutor==this.autor.idAutor);
+                        this.autors.splice(index, 1);
                     }
-                    localStorage.setItem('alumnos', JSON.stringify(this.alumnos));
-                    this.nuevoAlumno();
+                    localStorage.setItem('autors', JSON.stringify(this.autors));
+                    this.nuevoAutor();
                 },
-                eliminarAlumno(alumno){
-                    if(confirm(`Esta seguro de eliminar el alumno ${alumno.nombre}?`)){
+                eliminarAutor(autor){
+                    if(confirm(`Esta seguro de eliminar el autor ${autor.nombre}?`)){
                         this.accion="eliminar";
-                        this.alumno = alumno;
-                        this.guardarAlumno();
+                        this.autor = autor;
+                        this.guardarAutor();
                     }
                 },
-                listarAlumnos(){
-                    this.alumnos = JSON.parse(localStorage.getItem('alumnos') || "[]")
-                        .filter(alumno=>alumno.nombre.toLowerCase().indexOf(this.buscar.toLowerCase())>-1);
+                listarAutors(){
+                    this.autors = JSON.parse(localStorage.getItem('autors') || "[]")
+                        .filter(autor=>autor.nombre.toLowerCase().indexOf(this.buscar.toLowerCase())>-1);
                 }
             },
             created(){
-                this.listarAlumnos();
+                this.listarAutors();
             }
         }).mount('#app')
     </script>
